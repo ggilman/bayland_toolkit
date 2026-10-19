@@ -26,7 +26,7 @@ inside the project.
 | Copy | Made from |
 |------|-----------|
 | `Yardmaster`, `Mineoku`, `TraceEscape`: `assets/brand/bayland_blue_icon.png` | `bayland_blue_icon_144px.png`, copied as is. Imported with mipmaps on (`mipmaps/generate=true` in its `.import`) so it stays sharp when shown small. Used at the foot of each main menu (64 px) and on the credits/licenses screen (144 px). |
-| `Yardmaster`, `Mineoku`, `TraceEscape`: `assets/brand/boot_splash.png` | `bayland_blue_icon_512px.png` scaled to 400×400 (Lanczos) and centered on a transparent 1080×1920 canvas. It's Godot's launch splash (`application/boot_splash/image`), drawn over each game's own background color. |
+| `Yardmaster`, `Mineoku`, `TraceEscape`: `assets/brand/boot_splash.png` | `bayland_blue_logo_with_name.png` cropped to its visible area, scaled to 552 px wide (Lanczos), on a cream (`#faf7f2`) disc 640 px across, centered on a transparent 1080×1920 canvas. The disc keeps the navy lettering readable on the games' dark backgrounds. It's Godot's launch splash (`application/boot_splash/image`), drawn over each game's own background color. |
 | `baylandblue.github.io`: `images/bayland_blue_logo.webp` | `bayland_blue_logo_with_name.png` cropped to its visible area, scaled to 640 px wide (Lanczos) and saved as WebP, quality 88. On the home page. |
 | `baylandblue.github.io`: `images/bayland_blue_icon_48.png`, `images/bayland_blue_icon_192.png` | The 48 and 192 px icons, copied as is. The favicon and Apple touch icon, and the breadcrumb icon on each game page. |
 
