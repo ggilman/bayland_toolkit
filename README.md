@@ -7,7 +7,7 @@ from these. Change a logo here first, then refresh the copies listed below.
 
 | File | Size | What it is |
 |------|------|------------|
-| `bayland_blue_logo_with_name.png` | 949×924 | The full logo: the round bay scene with "BAYLAND BLUE" arched below it. For the website and anywhere the name should show. |
+| `bayland_blue_logo_with_name.png` | 949×924 | The full logo: the round bay scene with "BAYLAND BLUE LLC" arched below it. For the website and anywhere the name should show. |
 | `bayland_blue_logo with_arcs.png` | 949×979 | The full logo with thin gold arcs around it. |
 | `bayland_blue_logo.png` | 760×788 | The round bay scene alone, without the name. |
 | `bayland_blue_icon_pngs/bayland_blue_icon_<n>px.png` | 24 to 512 px | The simplified flat icon (sun, sea, shore and phone) in 24, 36, 48, 72, 96, 144, 192 and 512 px. For in-game use and favicons. |
