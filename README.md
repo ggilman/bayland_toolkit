@@ -30,7 +30,7 @@ inside the project.
 | `baylandblue.github.io`: `images/bayland_blue_logo.webp` | `bayland_blue_logo_with_name.png` cropped to its visible area, scaled to 640 px wide (Lanczos) and saved as WebP, quality 88. On the home page. |
 | `baylandblue.github.io`: `images/bayland_blue_icon_48.png`, `images/bayland_blue_icon_192.png` | The 48 and 192 px icons, copied as is. The favicon and Apple touch icon, and the breadcrumb icon on each game page. |
 
-`refresh_copies.py` makes all of them (Grid Untangle and Leaky Pipes too) from the files here,
+`refresh_copies.py` makes all of them (Grid Untangle, Leaky Pipes and AIAntennaTuner too) from the files here,
 following the recipes above. It needs Pillow:
 
     python refresh_copies.py           # rewrite every copy that differs

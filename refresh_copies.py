@@ -18,7 +18,7 @@ from PIL import Image, ImageDraw
 
 HERE = Path(__file__).resolve().parent
 DEV = HERE.parent
-GAMES = ["GridUntangle", "Mineoku", "TraceEscape", "LeakyPipes", "Yardmaster"]
+GAMES = ["GridUntangle", "Mineoku", "TraceEscape", "LeakyPipes", "Yardmaster", "AIAntennaTuner"]
 SITE = "baylandblue.github.io"
 
 LOGO_WITH_NAME = HERE / "bayland_blue_logo_with_name.png"
