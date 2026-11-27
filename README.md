@@ -30,6 +30,9 @@ SaveManager.settings["review"] = review.good_moment(SaveManager.settings.get("re
 SaveManager.save_game()
 ```
 
+Or let the module keep the state in its own file on the device (`user://bayland_review.json`):
+`review.note_good_moment()`.
+
 - Android: `review/android_src/` is a Godot 4 (v2) plugin over Google Play's In-App Review
   API. `JAVA_HOME=~/.jdks/temurin-17 ./gradlew assemble` (in `android_src/`) rebuilds
   `review/bin/BaylandReview-{debug,release}.aar`. The export needs the Gradle build.

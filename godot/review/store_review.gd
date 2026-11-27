@@ -27,6 +27,25 @@ func _init(custom_rules: Dictionary = {}) -> void:
 		if _plugin.has_signal("review_finished"):
 			_plugin.connect("review_finished", func(ran: bool) -> void: finished.emit(ran))
 
+## Where note_good_moment keeps the state: its own file on this device (not synced, and not
+## cleared by an app's Reset progress).
+const STATE_PATH := "user://bayland_review.json"
+
+## good_moment, with the state kept in STATE_PATH: for apps that don't store it themselves.
+func note_good_moment(now: float = Time.get_unix_time_from_system(), path: String = STATE_PATH) -> void:
+	save_state(good_moment(load_state(path), now), path)
+
+static func load_state(path: String = STATE_PATH) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		return {}
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	return parsed if parsed is Dictionary else {}
+
+static func save_state(state: Dictionary, path: String = STATE_PATH) -> void:
+	var f := FileAccess.open(path, FileAccess.WRITE)
+	if f != null:
+		f.store_string(JSON.stringify(state))
+
 ## Whether the store's sheet can be asked for on this device.
 func available() -> bool:
 	return _plugin != null
