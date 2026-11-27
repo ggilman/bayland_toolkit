@@ -1,0 +1,44 @@
+// The Android side of the toolkit's review module: a Godot 4 (v2) Android plugin over Google
+// Play's In-App Review API. `gradlew assemble` builds the .aar files and copies them into
+// ../bin, where the toolkit's export plugin picks them up. Versions match Godot 4.7's Android
+// build template (the same as bayland_unity_ads).
+plugins {
+    id 'com.android.library' version '8.6.1'
+    id 'org.jetbrains.kotlin.android' version '2.1.21'
+}
+
+ext.godotVersion = '4.7.2.stable'
+// Also in ../../plugin.gd (the export plugin adds the same dependency to the game).
+ext.playReviewVersion = '2.0.2'
+
+android {
+    namespace 'com.baylandblue.toolkit.review'
+    compileSdk 36
+    buildToolsVersion '36.1.0'
+
+    defaultConfig {
+        minSdk 24
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    // Both come with the exported game: Godot itself, and Play Review from the export plugin.
+    compileOnly "org.godotengine:godot:$godotVersion"
+    compileOnly "com.google.android.play:review:$playReviewVersion"
+}
+
+tasks.register('copyAars', Copy) {
+    from(layout.buildDirectory.dir('outputs/aar'))
+    into(layout.projectDirectory.dir('../bin'))
+    include('*.aar')
+    rename('android_src-(debug|release).aar', 'BaylandReview-$1.aar')
+}
+tasks.named('assemble') { finalizedBy('copyAars') }

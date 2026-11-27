@@ -1,0 +1,17 @@
+name: bayland_review
+description: The store's in-app rating sheet, asked for at good moments only. Bayland Blue toolkit.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  in_app_review: ^2.0.12
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
