@@ -39,6 +39,8 @@ following the recipes above. It needs Pillow:
     python refresh_copies.py           # rewrite every copy that differs
     python refresh_copies.py --check   # only report; exits 1 if any is out of date
 
+On a Mac, use `python3` and `python3 -m pip install --user pillow`.
+
 Run it after changing a logo, so no project is left with an old copy, then commit each project's
 changes there.
 

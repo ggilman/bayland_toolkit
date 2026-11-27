@@ -5,8 +5,9 @@ Each game and the website keeps its own copies, made from the files here:
     python refresh_copies.py           # rewrite every copy that differs
     python refresh_copies.py --check   # only report; exits 1 if any is out of date
 
-Projects are found beside the toolkit (D:/Dev/<project>, with this file in
-D:/Dev/bayland_toolkit/brand); a missing one is skipped. After refreshing a game, run `godot --headless --path . --import` in it
+Projects are found beside the toolkit (<dev root>/<project>, with this file in
+<dev root>/bayland_toolkit/brand), by repo name or older Windows folder name; a
+missing one is reported and skipped. After refreshing a game, run `godot --headless --path . --import` in it
 and commit the changed files there. Needs Pillow (pip install pillow).
 """
 
@@ -18,7 +19,15 @@ from PIL import Image, ImageDraw
 
 HERE = Path(__file__).resolve().parent
 DEV = HERE.parent.parent  # brand/ -> bayland_toolkit/ -> the dev root
-GAMES = ["GridUntangle", "Mineoku", "TraceEscape", "LeakyPipes", "Yardmaster", "AIAntennaTuner"]
+# Each game's folder names: its repo name first, then any older name on Windows.
+GAMES = [
+    ("GridUntangle",),
+    ("Mineoku",),
+    ("trace_escape", "TraceEscape"),
+    ("leaky-pipes", "LeakyPipes"),
+    ("yardmaster", "Yardmaster"),
+    ("AIAntennaTuner",),
+]
 SITE = "baylandblue.github.io"
 
 LOGO_WITH_NAME = HERE / "bayland_blue_logo_with_name.png"
@@ -68,11 +77,13 @@ def copies() -> list[tuple[Path, bytes, bool]]:
     splash = _png(boot_splash())
     icon_144 = (ICONS / "bayland_blue_icon_144px.png").read_bytes()
     out = []
-    for game in GAMES:
-        brand = DEV / game / "assets" / "brand"
-        if brand.is_dir():
-            out.append((brand / "bayland_blue_icon.png", icon_144, False))
-            out.append((brand / "boot_splash.png", splash, True))
+    for names in GAMES:
+        brand = next((DEV / n / "assets" / "brand" for n in names if (DEV / n / "assets" / "brand").is_dir()), None)
+        if brand is None:
+            print(f"  missing  {names[0]} (no folder beside this one)")
+            continue
+        out.append((brand / "bayland_blue_icon.png", icon_144, False))
+        out.append((brand / "boot_splash.png", splash, True))
     images = DEV / SITE / "images"
     if images.is_dir():
         out.append((images / "bayland_blue_logo.webp", site_logo(), False))
