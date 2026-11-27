@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:in_app_review/in_app_review.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'review_timing.dart';
 
@@ -30,5 +33,23 @@ class StoreReview {
       log?.call('review request failed: ${e.runtimeType}');
     }
     return out;
+  }
+
+  /// Where [noteGoodMoment] keeps the state: SharedPreferences, on this device only.
+  static const prefsKey = 'bayland_review';
+
+  /// [goodMoment], with the state kept in SharedPreferences under [prefsKey]: for apps that
+  /// don't store it themselves. Never throws.
+  Future<void> noteGoodMoment({SharedPreferencesAsync? prefs, DateTime? now}) async {
+    try {
+      final p = prefs ?? SharedPreferencesAsync();
+      final raw = await p.getString(prefsKey);
+      final json = raw == null ? null : jsonDecode(raw);
+      final state = ReviewState.fromJson(json is Map<String, Object?> ? json : null);
+      final out = await goodMoment(state, now: now);
+      await p.setString(prefsKey, jsonEncode(out.toJson()));
+    } on Object catch (e) {
+      log?.call('review state failed: ${e.runtimeType}');
+    }
   }
 }
