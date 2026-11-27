@@ -7,6 +7,7 @@ carries only what it uses.
 |---|---|---|
 | `godot/` | The Godot games | Git submodule at `addons/bayland_toolkit`; enable the plugin `res://addons/bayland_toolkit/godot/plugin.cfg` and switch modules on in Project Settings (`bayland_toolkit/<module>/enabled`). |
 | `flutter/` | The Flutter apps | A git dependency per package (below); no submodule. |
+| `brand/` | Every app and the website | Bayland Blue's logos and icons (was `bayland_blue_logos`). Apps keep their own copies, made by `brand/refresh_copies.py` and the Flutter apps' `tools/brand/make_splash.py` from `<dev root>/bayland_toolkit/brand`. |
 
 Anything that isn't Godot carries a `.gdignore`, so a game's editor and exports skip it.
 

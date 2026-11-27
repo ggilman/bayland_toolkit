@@ -5,8 +5,8 @@ Each game and the website keeps its own copies, made from the files here:
     python refresh_copies.py           # rewrite every copy that differs
     python refresh_copies.py --check   # only report; exits 1 if any is out of date
 
-Projects are found beside this folder (D:/Dev/<project>); a missing one is
-skipped. After refreshing a game, run `godot --headless --path . --import` in it
+Projects are found beside the toolkit (D:/Dev/<project>, with this file in
+D:/Dev/bayland_toolkit/brand); a missing one is skipped. After refreshing a game, run `godot --headless --path . --import` in it
 and commit the changed files there. Needs Pillow (pip install pillow).
 """
 
@@ -17,7 +17,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 HERE = Path(__file__).resolve().parent
-DEV = HERE.parent
+DEV = HERE.parent.parent  # brand/ -> bayland_toolkit/ -> the dev root
 GAMES = ["GridUntangle", "Mineoku", "TraceEscape", "LeakyPipes", "Yardmaster", "AIAntennaTuner"]
 SITE = "baylandblue.github.io"
 

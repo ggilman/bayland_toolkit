@@ -1,5 +1,8 @@
 # Bayland Blue logos
 
+Part of the Bayland Toolkit (`brand/`); until 2026-11-27 this was its own repo,
+`ggilman/bayland_blue_logos` (archived). Scripts find it at `<dev root>/bayland_toolkit/brand`.
+
 The source files for Bayland Blue's brand. Copies used by the games and the website are made
 from these. Change a logo here first, then refresh the copies listed below.
 
